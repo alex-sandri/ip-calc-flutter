@@ -20,12 +20,10 @@ class IpAddress
   IpAddress getNetworkAddress() {
     String networkAddress = "";
     String networkAddressBits
-      = address
-          .split(".")
-          .map((num) => int.parse(num).toRadixString(2).padLeft(8, "0"))
-          .join("")
-          .substring(0, SubnetMask(subnetMask.subnetMask).getBitCount())
-          .padRight(32, "0");
+      = getInBits()
+          .replaceAll(".", "")
+          .substring(0, subnetMask.getBitCount())
+          .padRight(32, "1");
 
     for (int i = 0; i < 4; i++)
       networkAddress += "${int.parse(networkAddressBits.substring(i * 8, 8), radix: 2)}.";
