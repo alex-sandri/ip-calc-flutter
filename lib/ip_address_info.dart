@@ -15,11 +15,13 @@ class IpAddressInfo extends StatelessWidget {
           TextField(
             decoration: InputDecoration(
               labelText: "IP Address",
+              hintText: "192.168.1.1",
             ),
           ),
           TextField(
             decoration: InputDecoration(
               labelText: "Subnet Mask",
+              hintText: "255.255.255.0 or /24"
             ),
           ),
           FlatButton(
