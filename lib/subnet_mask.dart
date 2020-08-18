@@ -1,3 +1,5 @@
+import 'dart:math';
+
 enum SubnetMaskNotation
 {
   DOT_DECIMAL,
@@ -42,4 +44,6 @@ class SubnetMask
   }
 
   int getBitCount() => int.parse(this.convertTo(SubnetMaskNotation.SLASH).subnetMask.replaceFirst("/", ""));
+
+  int getMaxNumberOfHosts() => pow(2, 32 - this.getBitCount()) - 2;
 }
