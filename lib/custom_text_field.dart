@@ -13,8 +13,8 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       decoration: InputDecoration(
-        labelText: "IP Address",
-        hintText: "192.168.1.1",
+        labelText: label,
+        hintText: hint,
       ),
     );
   }
