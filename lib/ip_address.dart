@@ -35,4 +35,10 @@ class IpAddress
       subnetMask: subnetMask,
     );
   }
+
+  String getInBits([ bool dotSeparated = false ]) =>
+    address
+    .split(".")
+    .map((num) => int.parse(num).toRadixString(2).padLeft(8, "0"))
+    .join(dotSeparated ? "." : "");
 }
