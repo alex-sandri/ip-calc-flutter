@@ -37,7 +37,17 @@ class SubnetMask
     }
     else
     {
-      // TODO
+      String dotDecimalSubnetMask = "";
+			int subnetMaskBits = this.getBitCount();
+
+			for (int i = 0; i < 4; i++)
+			{
+				dotDecimalSubnetMask += "${subnetMaskBits >= 8 ? "255" : int.parse(("1" * subnetMaskBits).padRight(8, "0"), radix: 2)}.";
+
+				subnetMaskBits -= min(subnetMaskBits, 8);
+			}
+
+			subnetMask = dotDecimalSubnetMask.substring(0, dotDecimalSubnetMask.length - 1);
     }
 
     return SubnetMask(subnetMask);
