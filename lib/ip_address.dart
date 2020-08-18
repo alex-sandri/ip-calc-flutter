@@ -36,6 +36,23 @@ class IpAddress
     );
   }
 
+  IpAddress getBroadcastAddress() {
+    String broadcastAddress = "";
+    String broadcastAddressBits
+      = getInBits()
+          .replaceAll(".", "")
+          .substring(0, subnetMask.getBitCount())
+          .padRight(32, "1");
+
+    for (int i = 0; i < 4; i++)
+      broadcastAddress += "${int.parse(broadcastAddressBits.substring(i * 8, 8), radix: 2)}.";
+
+    return IpAddress(
+      address: broadcastAddress.substring(0, broadcastAddress.length - 1),
+      subnetMask: subnetMask,
+    );
+  }
+
   String getInBits([ bool dotSeparated = false ]) =>
     address
     .split(".")
