@@ -46,4 +46,14 @@ class SubnetMask
   int getBitCount() => int.parse(this.convertTo(SubnetMaskNotation.SLASH).subnetMask.replaceFirst("/", ""));
 
   int getMaxNumberOfHosts() => pow(2, 32 - this.getBitCount()) - 2;
+
+  SubnetMask getMinimum(int hosts) {
+    hosts += 2; // Network and Broadcast addresses
+
+    int power = 1;
+
+    while (power < hosts) power *= 2;
+
+    return SubnetMask("/${log(power) / ln2}");
+  }
 }
