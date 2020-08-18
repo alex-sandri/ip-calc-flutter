@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ip_calc/home.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,7 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "IP Calc",
       theme: ThemeData.dark(),
-      home: Container(),
+      home: Home(),
     );
   }
 }
