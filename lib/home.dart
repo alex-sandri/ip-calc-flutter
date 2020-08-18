@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ip_calc/ip_address_info.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -10,8 +11,10 @@ class Home extends StatelessWidget {
             "IP Calc",
           ),
         ),
-        body: Container(
-          
+        body: ListView(
+          children: [
+            IpAddressInfo(),
+          ],
         ),
       ),
     );
