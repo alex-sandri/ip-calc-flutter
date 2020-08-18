@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class CustomTextField extends StatelessWidget {
   final String label;
   final String hint;
+  final String error;
 
   CustomTextField({
     @required this.label,
     @required this.hint,
+    this.error,
   });
 
   @override
@@ -17,6 +19,7 @@ class CustomTextField extends StatelessWidget {
         decoration: InputDecoration(
           labelText: label,
           hintText: hint,
+          errorText: error,
           labelStyle: TextStyle(
             color: Colors.white,
           ),
