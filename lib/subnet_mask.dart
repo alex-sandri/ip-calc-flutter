@@ -1,3 +1,9 @@
+enum SubnetMaskNotation
+{
+  DOT_DECIMAL,
+  SLASH,
+}
+
 class SubnetMask
 {
   final String subnetMask;
@@ -11,5 +17,27 @@ class SubnetMask
 
     return RegExp("^$subnetMaskRegExpPart\\.$subnetMaskRegExpPart\\.$subnetMaskRegExpPart\\.$subnetMaskRegExpPart\$").hasMatch(this.subnetMask)
       || RegExp(subnetMaskSlashNotationRegExpString).hasMatch(this.subnetMask);
+  }
+
+  SubnetMask convertTo(SubnetMaskNotation notation) {
+    String subnetMask;
+
+    if (notation == SubnetMaskNotation.SLASH)
+    {
+      subnetMask = "/"
+        + this
+            .convertTo(SubnetMaskNotation.DOT_DECIMAL)
+            .subnetMask
+            .split(".")
+            .map(int.parse)
+            .reduce((value, element) => value + element.toRadixString(2).replaceAll("0", "").length)
+            .toString();
+    }
+    else
+    {
+
+    }
+
+    return SubnetMask(subnetMask);
   }
 }
