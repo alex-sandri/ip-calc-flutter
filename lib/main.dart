@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
       title: "IP Calc",
       theme: ThemeData.dark(),
       home: Home(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
