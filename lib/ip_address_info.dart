@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ip_calc/custom_text_field.dart';
 
 class IpAddressInfo extends StatelessWidget {
   @override
@@ -12,17 +13,13 @@ class IpAddressInfo extends StatelessWidget {
             "IP Address Info",
             style: Theme.of(context).textTheme.headline5,
           ),
-          TextField(
-            decoration: InputDecoration(
-              labelText: "IP Address",
-              hintText: "192.168.1.1",
-            ),
+          CustomTextField(
+            label: "IP Address",
+            hint: "192.168.1.1",
           ),
-          TextField(
-            decoration: InputDecoration(
-              labelText: "Subnet Mask",
-              hintText: "255.255.255.0 or /24"
-            ),
+          CustomTextField(
+            label: "Subnet Mask",
+            hint: "255.255.255.0 or /24",
           ),
           FlatButton(
             onPressed: () {
