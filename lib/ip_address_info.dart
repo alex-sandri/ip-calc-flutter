@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ip_calc/custom_flat_button.dart';
 import 'package:ip_calc/custom_text_field.dart';
 
 class IpAddressInfo extends StatelessWidget {
@@ -21,21 +22,17 @@ class IpAddressInfo extends StatelessWidget {
             label: "Subnet Mask",
             hint: "255.255.255.0 or /24",
           ),
-          FlatButton(
+          CustomFlatButton(
+            text: "Calc",
             onPressed: () {
               // TODO
             },
-            child: Text(
-              "Calc",
-            ),
           ),
-          FlatButton(
+          CustomFlatButton(
+            text: "Reset",
             onPressed: () {
               // TODO
             },
-            child: Text(
-              "Reset",
-            ),
           ),
         ],
       ),
