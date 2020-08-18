@@ -11,21 +11,18 @@ class CustomFlatButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4),
-      child: Container(
-        width: double.infinity,
-        child: FlatButton(
-          child: Text(
-            text,
-            style: TextStyle(
-              color: Theme.of(context).primaryColor,
-            ),
+    return Container(
+      width: double.infinity,
+      child: FlatButton(
+        child: Text(
+          text,
+          style: TextStyle(
+            color: Theme.of(context).primaryColor,
           ),
-          onPressed: onPressed,
-          color: Colors.white,
-          splashColor: Colors.grey.shade400,
         ),
+        onPressed: onPressed,
+        color: Colors.white,
+        splashColor: Colors.grey.shade400,
       ),
     );
   }
