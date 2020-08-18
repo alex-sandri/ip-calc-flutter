@@ -32,6 +32,14 @@ class IpAddressInfo extends StatelessWidget {
               "Calc",
             ),
           ),
+          FlatButton(
+            onPressed: () {
+              // TODO
+            },
+            child: Text(
+              "Reset",
+            ),
+          ),
         ],
       ),
     );
