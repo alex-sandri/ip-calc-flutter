@@ -5,16 +5,19 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "IP Calc",
+      child: GestureDetector(
+        onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text(
+              "IP Calc",
+            ),
           ),
-        ),
-        body: ListView(
-          children: [
-            IpAddressInfo(),
-          ],
+          body: ListView(
+            children: [
+              IpAddressInfo(),
+            ],
+          ),
         ),
       ),
     );
