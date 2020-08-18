@@ -35,9 +35,11 @@ class SubnetMask
     }
     else
     {
-
+      // TODO
     }
 
     return SubnetMask(subnetMask);
   }
+
+  int getBitCount() => int.parse(this.convertTo(SubnetMaskNotation.SLASH).subnetMask.replaceFirst("/", ""));
 }
