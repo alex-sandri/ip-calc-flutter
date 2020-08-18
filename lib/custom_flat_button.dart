@@ -18,8 +18,13 @@ class CustomFlatButton extends StatelessWidget {
         child: FlatButton(
           child: Text(
             text,
+            style: TextStyle(
+              color: Theme.of(context).primaryColor,
+            ),
           ),
           onPressed: onPressed,
+          color: Colors.white,
+          splashColor: Colors.grey.shade400,
         ),
       ),
     );
