@@ -23,7 +23,7 @@ class IpAddress
       = getInBits()
           .replaceAll(".", "")
           .substring(0, subnetMask.getBitCount())
-          .padRight(32, "1");
+          .padRight(32, "0");
 
     for (int i = 0; i < 4; i++)
       networkAddress += "${int.parse(networkAddressBits.substring(i * 8, 8), radix: 2)}.";
