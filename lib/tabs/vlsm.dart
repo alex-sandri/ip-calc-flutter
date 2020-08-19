@@ -16,6 +16,9 @@ class _VlsmState extends State<Vlsm> {
   String _subnetMaskError;
   String _numberOfSubnetsError;
 
+  List<TextEditingController> _subnetNameControllers = [];
+  List<TextEditingController> _subnetSizeControllers = [];
+
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -42,7 +45,12 @@ class _VlsmState extends State<Vlsm> {
         ),
         CustomFlatButton(
           text: "Create subnets",
-          onPressed: () => setState(() {}),
+          onPressed: () {
+            _subnetNameControllers.clear();
+            _subnetSizeControllers.clear();
+
+            setState(() {});
+          },
         ),
         ListView.builder(
           shrinkWrap: true,
@@ -50,6 +58,10 @@ class _VlsmState extends State<Vlsm> {
           itemCount: int.tryParse(_numberOfSubnetsController.text) ?? 0,
           itemBuilder: (context, index) {
             final TextEditingController subnetNameController = TextEditingController(text: "Subnet$index");
+            final TextEditingController subnetSizeController = TextEditingController();
+
+            _subnetNameControllers.add(subnetNameController);
+            _subnetSizeControllers.add(subnetSizeController);
 
             return Row(
               children: [
@@ -67,6 +79,7 @@ class _VlsmState extends State<Vlsm> {
                   child: CustomTextField(
                     label: "Subnet size",
                     hint: "10",
+                    controller: subnetSizeController,
                     keyboardType: TextInputType.number,
                   ),
                 ),
@@ -77,7 +90,15 @@ class _VlsmState extends State<Vlsm> {
         CustomFlatButton(
           text: "Calc",
           onPressed: () {
-            // TODO
+            print({
+              _ipAddressController.text,
+              _subnetMaskController.text,
+              for (int i = 0; i < _subnetNameControllers.length; i++)
+              {
+                _subnetNameControllers[i].text,
+                _subnetSizeControllers[i].text,
+              }
+            });
           },
         ),
         CustomFlatButton(
