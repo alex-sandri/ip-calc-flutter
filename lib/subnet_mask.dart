@@ -10,7 +10,10 @@ class SubnetMask
 {
   final String subnetMask;
 
-  SubnetMask(this.subnetMask);
+  SubnetMask(this.subnetMask)
+  {
+    if (!isValid()) throw ArgumentError("Invalid subnet mask");
+  }
 
   bool isValid() {
     const String subnetMaskRegExpPart = "(128|192|224|240|248|252|254|255)";

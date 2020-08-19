@@ -42,12 +42,39 @@ class _IpAddressInfoState extends State<IpAddressInfo> {
           CustomFlatButton(
             text: "Calc",
             onPressed: () {
-              final IpAddress ipAddress = IpAddress(
-                address: _ipAddressController.text,
-                subnetMask: SubnetMask(
-                  _subnetMaskController.text,
-                ),
-              );
+              IpAddress ipAddress;
+              SubnetMask subnetMask;
+
+              try
+              {
+                subnetMask = SubnetMask(_subnetMaskController.text);
+
+                _subnetMaskError = null;
+              }
+              catch(e)
+              {
+                if (e is ArgumentError)
+                  _subnetMaskError = e.message;
+              }
+
+              try
+              {
+                ipAddress = IpAddress(
+                  address: _ipAddressController.text,
+                  subnetMask: subnetMask,
+                );
+
+                _ipAddressError = null;
+              }
+              catch(e)
+              {
+                if (e is ArgumentError)
+                  _ipAddressError = e.message;
+              }
+
+              setState(() {});
+
+              if (_ipAddressError != null || _subnetMaskError != null) return;
 
               showModalBottomSheet(
                 context: context,
