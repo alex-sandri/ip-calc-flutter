@@ -16,6 +16,7 @@ class Home extends StatelessWidget {
                 "IP Calc",
               ),
               bottom: TabBar(
+                isScrollable: true,
                 tabs: [
                   Tab(
                     text: "IP Address Info",
