@@ -71,4 +71,21 @@ class IpAddress
       subnetMask: subnetMask,
     );
   }
+
+  IpAddress getLastUsableHostAddress()
+  {
+    String addressInBits = getBroadcastAddress().getInBits();
+
+    addressInBits = (addressInBits.substring(0, addressInBits.lastIndexOf("1")) + "0");
+
+    String lastUsableHostAddress = "";
+
+    for (int i = 0; i < 4; i++)
+      lastUsableHostAddress += "${int.parse(addressInBits.substring(i * 8, 8), radix: 2)}.";
+
+    return IpAddress(
+      address: lastUsableHostAddress.substring(0, lastUsableHostAddress.length - 1),
+      subnetMask: subnetMask,
+    );
+  }
 }
