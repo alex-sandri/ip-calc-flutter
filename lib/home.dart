@@ -9,7 +9,7 @@ class Home extends StatelessWidget {
       child: GestureDetector(
         onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
         child: DefaultTabController(
-          length: 2,
+          length: 3,
           child: Scaffold(
             appBar: AppBar(
               title: Text(
@@ -23,6 +23,9 @@ class Home extends StatelessWidget {
                   Tab(
                     text: "Minimum Subnet Mask",
                   ),
+                  Tab(
+                    text: "Variable Length Subnet Mask (VLSM)",
+                  ),
                 ],
               ),
             ),
@@ -30,6 +33,7 @@ class Home extends StatelessWidget {
               children: [
                 IpAddressInfo(),
                 MinimumSubnetMask(),
+                Container(),
               ],
             ),
           ),
