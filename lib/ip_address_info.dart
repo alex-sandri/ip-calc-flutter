@@ -59,9 +59,7 @@ class _IpAddressInfoState extends State<IpAddressInfo> {
           ),
           CustomFlatButton(
             text: "Reset",
-            onPressed: () {
-              // TODO
-            },
+            onPressed: () => _ipAddressController.text = _subnetMaskController.text = "",
           ),
         ],
       ),
