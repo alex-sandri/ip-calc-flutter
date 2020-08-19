@@ -5,12 +5,14 @@ class CustomTextField extends StatelessWidget {
   final String hint;
   final String error;
   final TextEditingController controller;
+  final TextInputType keyboardType;
 
   CustomTextField({
     @required this.label,
     @required this.hint,
     this.error,
     this.controller,
+    this.keyboardType,
   });
 
   @override
@@ -29,6 +31,7 @@ class CustomTextField extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: TextField(
         controller: controller,
+        keyboardType: keyboardType,
         decoration: InputDecoration(
           labelText: label,
           hintText: hint,
