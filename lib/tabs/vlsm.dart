@@ -49,6 +49,12 @@ class _VlsmState extends State<Vlsm> {
             _subnetNameControllers.clear();
             _subnetSizeControllers.clear();
 
+            for (int i = 0; i < int.tryParse(_numberOfSubnetsController.text) ?? 0; i++)
+            {
+              _subnetNameControllers.add(TextEditingController(text: "Subnet$i"));
+              _subnetSizeControllers.add(TextEditingController());
+            }
+
             setState(() {});
           },
         ),
@@ -57,19 +63,13 @@ class _VlsmState extends State<Vlsm> {
           physics: NeverScrollableScrollPhysics(),
           itemCount: int.tryParse(_numberOfSubnetsController.text) ?? 0,
           itemBuilder: (context, index) {
-            final TextEditingController subnetNameController = TextEditingController(text: "Subnet$index");
-            final TextEditingController subnetSizeController = TextEditingController();
-
-            _subnetNameControllers.add(subnetNameController);
-            _subnetSizeControllers.add(subnetSizeController);
-
             return Row(
               children: [
                 Expanded(
                   child: CustomTextField(
                     label: "Subnet name",
                     hint: "Subnet$index",
-                    controller: subnetNameController,
+                    controller: _subnetNameControllers[index],
                   ),
                 ),
                 SizedBox(
@@ -79,7 +79,7 @@ class _VlsmState extends State<Vlsm> {
                   child: CustomTextField(
                     label: "Subnet size",
                     hint: "10",
-                    controller: subnetSizeController,
+                    controller: _subnetSizeControllers[index],
                     keyboardType: TextInputType.number,
                   ),
                 ),
