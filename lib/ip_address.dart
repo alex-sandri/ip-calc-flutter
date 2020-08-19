@@ -128,9 +128,11 @@ class IpAddress
 
   bool isPrivate()
   {
-    SubnetMask slashSubnetMask = subnetMask.convertTo(SubnetMaskNotation.SLASH);
-
-    return (address.startsWith("10.") && slashSubnetMask.getBitCount() == 8)
+    return
+      isIncludedInSubnet(
+        subnetMask: subnetMask, 
+        networkAddress: IpAddress(address: "10.0.0.0", subnetMask: SubnetMask("/8"))
+      )
       || isIncludedInSubnet(
           subnetMask: subnetMask, 
           networkAddress: IpAddress(address: "172.16.0.0", subnetMask: SubnetMask("/12"))
