@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ip_calc/tabs/ip_address_info.dart';
 import 'package:ip_calc/tabs/minimum_subnet_mask.dart';
+import 'package:ip_calc/tabs/vlsm.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -34,7 +35,7 @@ class Home extends StatelessWidget {
               children: [
                 IpAddressInfo(),
                 MinimumSubnetMask(),
-                Container(),
+                Vlsm(),
               ],
             ),
           ),
