@@ -39,6 +39,10 @@ class _VlsmState extends State<Vlsm> {
           error: _numberOfSubnetsError,
           controller: _numberOfSubnetsController,
         ),
+        CustomFlatButton(
+          text: "Create subnets",
+          onPressed: () => setState(() {}),
+        ),
         ListView.builder(
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
