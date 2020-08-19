@@ -49,7 +49,7 @@ class _VlsmState extends State<Vlsm> {
             _subnetNameControllers.clear();
             _subnetSizeControllers.clear();
 
-            for (int i = 0; i < int.tryParse(_numberOfSubnetsController.text) ?? 0; i++)
+            for (int i = 0; i < (int.tryParse(_numberOfSubnetsController.text) ?? 0); i++)
             {
               _subnetNameControllers.add(TextEditingController(text: "Subnet$i"));
               _subnetSizeControllers.add(TextEditingController());
