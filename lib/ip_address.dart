@@ -116,12 +116,12 @@ class IpAddress
     );
   }
 
-  bool isIncludedInSubnet(SubnetMask subnetMask, { IpAddress networkAddress })
+  bool isIncludedInSubnet({ @required SubnetMask subnetMask, @required IpAddress networkAddress })
   {
     String addressBits = getInBits();
-    String networkAddressBits = (networkAddress ?? getNetworkAddress()).getInBits();
+    String networkAddressBits = networkAddress.getInBits();
         
-    int subnetMaskBitCount = subnetMask.getBitCount();
+    int subnetMaskBitCount = networkAddress.subnetMask.getBitCount();
 
     return addressBits.substring(0, subnetMaskBitCount) == networkAddressBits.substring(0, subnetMaskBitCount);
   }
@@ -131,7 +131,13 @@ class IpAddress
     SubnetMask slashSubnetMask = subnetMask.convertTo(SubnetMaskNotation.SLASH);
 
     return (address.startsWith("10.") && slashSubnetMask.getBitCount() == 8)
-      || isIncludedInSubnet(subnetMask, networkAddress: IpAddress(address: "172.16.0.0", subnetMask: SubnetMask("/12")))
-      || isIncludedInSubnet(subnetMask, networkAddress: IpAddress(address: "192.168.0.0", subnetMask: SubnetMask("/16")));
+      || isIncludedInSubnet(
+          subnetMask: subnetMask, 
+          networkAddress: IpAddress(address: "172.16.0.0", subnetMask: SubnetMask("/12"))
+        )
+      || isIncludedInSubnet(
+          subnetMask: subnetMask,
+          networkAddress: IpAddress(address: "192.168.0.0", subnetMask: SubnetMask("/16"))
+        );
   }
 }
