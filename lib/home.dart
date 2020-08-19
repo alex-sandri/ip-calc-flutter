@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ip_calc/ip_address_info.dart';
+import 'package:ip_calc/minimum_subnet_mask.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -8,7 +9,7 @@ class Home extends StatelessWidget {
       child: GestureDetector(
         onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
         child: DefaultTabController(
-          length: 1,
+          length: 2,
           child: Scaffold(
             appBar: AppBar(
               title: Text(
@@ -20,12 +21,16 @@ class Home extends StatelessWidget {
                     icon: Icon(Icons.info_outline),
                     text: "IP Address Info",
                   ),
+                  Tab(
+                    text: "Minimum Subnet Mask",
+                  ),
                 ],
               ),
             ),
             body: TabBarView(
               children: [
                 IpAddressInfo(),
+                MinimumSubnetMask(),
               ],
             ),
           ),
