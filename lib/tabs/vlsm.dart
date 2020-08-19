@@ -41,6 +41,31 @@ class _VlsmState extends State<Vlsm> {
             error: _numberOfSubnetsError,
             controller: _numberOfSubnetsController,
           ),
+          ListView.builder(
+            shrinkWrap: true,
+            itemCount: int.tryParse(_numberOfSubnetsController.text) ?? 0,
+            itemBuilder: (context, index) {
+              return Row(
+                children: [
+                  Expanded(
+                    child: CustomTextField(
+                      label: "Subnet name",
+                      hint: "Subnet1",
+                    ),
+                  ),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  Expanded(
+                    child: CustomTextField(
+                      label: "Subnet size",
+                      hint: "10",
+                    ),
+                  ),
+                ],
+              );
+            },
+          ),
           CustomFlatButton(
             text: "Calc",
             onPressed: () {
