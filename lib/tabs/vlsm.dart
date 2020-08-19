@@ -13,6 +13,16 @@ class VlsmResult
   IpAddress networkAddress;
   String assignableRange;
   IpAddress broadcastAddress;
+
+  VlsmResult({
+    @required this.name,
+    @required this.size,
+    @required this.maxNumOfHosts,
+    @required this.subnetMask,
+    @required this.networkAddress,
+    @required this.assignableRange,
+    @required this.broadcastAddress,
+  });
 }
 
 class Vlsm extends StatefulWidget {
