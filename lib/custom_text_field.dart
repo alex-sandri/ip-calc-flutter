@@ -4,11 +4,13 @@ class CustomTextField extends StatelessWidget {
   final String label;
   final String hint;
   final String error;
+  final TextEditingController controller;
 
   CustomTextField({
     @required this.label,
     @required this.hint,
     this.error,
+    this.controller,
   });
 
   @override
@@ -16,6 +18,7 @@ class CustomTextField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: TextField(
+        controller: controller,
         decoration: InputDecoration(
           labelText: label,
           hintText: hint,
