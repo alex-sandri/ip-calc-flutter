@@ -16,12 +16,19 @@ class SubnetMask
   }
 
   bool isValid() {
-    const String subnetMaskRegExpPart = "(128|192|224|240|248|252|254|255)";
-
-    const String subnetMaskSlashNotationRegExpString = "^/([1-9]|[1-2][0-9]|3[0-1])\$";
-
-    return RegExp("^$subnetMaskRegExpPart\\.$subnetMaskRegExpPart\\.$subnetMaskRegExpPart\\.$subnetMaskRegExpPart\$").hasMatch(this.subnetMask)
-      || RegExp(subnetMaskSlashNotationRegExpString).hasMatch(this.subnetMask);
+    return
+      RegExp(
+        "^"
+        + "(128|192|224|240|248|252|254|255)"
+        + "\\."
+        + "(0|128|192|224|240|248|252|254|255)"
+        + "\\."
+        + "(0|128|192|224|240|248|252|254|255)"
+        + "\\."
+        + "(0|128|192|224|240|248|252|254|255)"
+        + "\$"
+      ).hasMatch(this.subnetMask)
+      || RegExp("^/([1-9]|[1-2][0-9]|3[0-1])\$").hasMatch(this.subnetMask);
   }
 
   SubnetMask convertTo(SubnetMaskNotation notation) {
