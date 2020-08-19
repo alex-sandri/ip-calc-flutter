@@ -24,13 +24,13 @@ class _IpAddressInfoState extends State<IpAddressInfo> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CustomTextField(
-            label: "IP Address",
+            label: "IP address",
             hint: "192.168.1.1",
             error: _ipAddressError,
             controller: _ipAddressController,
           ),
           CustomTextField(
-            label: "Subnet Mask",
+            label: "Subnet mask",
             hint: "255.255.255.0 or /24",
             error: _subnetMaskError,
             controller: _subnetMaskController,
@@ -96,7 +96,7 @@ class _IpAddressInfoState extends State<IpAddressInfo> {
                           height: 8,
                         ),
                         SelectableText(
-                          "Broadcast Address",
+                          "Broadcast address",
                           style: TextStyle(
                             fontWeight: FontWeight.bold
                           ),
