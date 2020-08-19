@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ip_calc/custom_flat_button.dart';
-import 'package:ip_calc/custom_text_field.dart';
+import 'package:ip_calc/widgets/custom_flat_button.dart';
+import 'package:ip_calc/widgets/custom_text_field.dart';
 import 'package:ip_calc/subnet_mask.dart';
 
 class MinimumSubnetMask extends StatelessWidget {

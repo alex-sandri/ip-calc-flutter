@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ip_calc/ip_address_info.dart';
-import 'package:ip_calc/minimum_subnet_mask.dart';
+import 'package:ip_calc/tabs/ip_address_info.dart';
+import 'package:ip_calc/tabs/minimum_subnet_mask.dart';
 
 class Home extends StatelessWidget {
   @override
