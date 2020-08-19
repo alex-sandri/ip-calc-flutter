@@ -165,6 +165,51 @@ class _VlsmState extends State<Vlsm> {
             });
           },
         ),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: DataTable(
+            columns: const [
+              DataColumn(
+                label: Text(
+                  "Subnet name"
+                ),
+              ),
+              DataColumn(
+                label: Text(
+                  "Needed size"
+                ),
+              ),
+              DataColumn(
+                label: Text(
+                  "Allocated size"
+                ),
+              ),
+              DataColumn(
+                label: Text(
+                  "Subnet mask"
+                ),
+              ),
+              DataColumn(
+                label: Text(
+                  "Network address"
+                ),
+              ),
+              DataColumn(
+                label: Text(
+                  "Assignable range"
+                ),
+              ),
+              DataColumn(
+                label: Text(
+                  "Broadcast address"
+                ),
+              ),
+            ],
+            rows: [
+
+            ],
+          ),
+        )
       ],
     );
   }
