@@ -18,7 +18,6 @@ class Home extends StatelessWidget {
               bottom: TabBar(
                 tabs: [
                   Tab(
-                    icon: Icon(Icons.info_outline),
                     text: "IP Address Info",
                   ),
                   Tab(
