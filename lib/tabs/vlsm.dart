@@ -45,12 +45,15 @@ class _VlsmState extends State<Vlsm> {
             shrinkWrap: true,
             itemCount: int.tryParse(_numberOfSubnetsController.text) ?? 0,
             itemBuilder: (context, index) {
+              final TextEditingController subnetNameController = TextEditingController(text: "Subnet$index");
+
               return Row(
                 children: [
                   Expanded(
                     child: CustomTextField(
                       label: "Subnet name",
-                      hint: "Subnet1",
+                      hint: "Subnet$index",
+                      controller: subnetNameController,
                     ),
                   ),
                   SizedBox(
