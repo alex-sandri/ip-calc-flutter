@@ -38,6 +38,7 @@ class _VlsmState extends State<Vlsm> {
           hint: "4",
           error: _numberOfSubnetsError,
           controller: _numberOfSubnetsController,
+          keyboardType: TextInputType.number,
         ),
         CustomFlatButton(
           text: "Create subnets",
@@ -66,6 +67,7 @@ class _VlsmState extends State<Vlsm> {
                   child: CustomTextField(
                     label: "Subnet size",
                     hint: "10",
+                    keyboardType: TextInputType.number,
                   ),
                 ),
               ],
