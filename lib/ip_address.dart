@@ -54,4 +54,21 @@ class IpAddress
     .split(".")
     .map((num) => int.parse(num).toRadixString(2).padLeft(8, "0"))
     .join(dotSeparated ? "." : "");
+
+  IpAddress getFirstUsableHostAddress()
+  {
+    String addressInBits = getNetworkAddress().getInBits();
+
+    addressInBits = (addressInBits.substring(0, addressInBits.lastIndexOf("0")) + "1");
+
+    String firstUsableHostAddress = "";
+
+    for (int i = 0; i < 4; i++)
+      firstUsableHostAddress += "${int.parse(addressInBits.substring(i * 8, 8), radix: 2)}.";
+
+    return IpAddress(
+      address: firstUsableHostAddress.substring(0, firstUsableHostAddress.length - 1),
+      subnetMask: subnetMask,
+    );
+  }
 }
