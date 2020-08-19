@@ -36,7 +36,7 @@ class MinimumSubnetMask extends StatelessWidget {
                           ),
                         ),
                         SelectableText(
-                          "TODO",
+                          SubnetMask.getMinimum(int.parse(_numberOfHostsNeededController.text)).subnetMask,
                           style: TextStyle(
                             fontWeight: FontWeight.w100
                           ),

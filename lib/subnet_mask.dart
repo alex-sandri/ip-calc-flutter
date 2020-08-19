@@ -69,10 +69,10 @@ class SubnetMask
   static SubnetMask getMinimum(int hosts) {
     hosts += 2; // Network and Broadcast addresses
 
-    int power = 1;
+    int bitsNeeded = 1;
 
-    while (power < hosts) power *= 2;
+    while (pow(2, bitsNeeded) < hosts) bitsNeeded++;
 
-    return SubnetMask("/${log(power) / ln2}");
+    return SubnetMask("/${32 - bitsNeeded}");
   }
 }
