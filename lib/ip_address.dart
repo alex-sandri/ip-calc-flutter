@@ -25,7 +25,7 @@ class IpAddress
           .padRight(32, "0");
 
     for (int i = 0; i < 4; i++)
-      networkAddress += "${int.parse(networkAddressBits.substring(i * 8, 8), radix: 2)}.";
+      networkAddress += "${int.parse(networkAddressBits.substring(i * 8, (i * 8) + 8), radix: 2)}.";
 
     return IpAddress(
       address: networkAddress.substring(0, networkAddress.length - 1),
@@ -41,7 +41,7 @@ class IpAddress
           .padRight(32, "1");
 
     for (int i = 0; i < 4; i++)
-      broadcastAddress += "${int.parse(broadcastAddressBits.substring(i * 8, 8), radix: 2)}.";
+      broadcastAddress += "${int.parse(broadcastAddressBits.substring(i * 8, (i * 8) + 8), radix: 2)}.";
 
     return IpAddress(
       address: broadcastAddress.substring(0, broadcastAddress.length - 1),
