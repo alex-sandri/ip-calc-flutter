@@ -15,6 +15,16 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const _defaultBorderStyle = OutlineInputBorder(
+      borderRadius: BorderRadius.all(
+        Radius.circular(5),
+      ),
+      borderSide: BorderSide(
+        color: Colors.white,
+        width: 2,
+      ),
+    );
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: TextField(
@@ -26,21 +36,17 @@ class CustomTextField extends StatelessWidget {
           labelStyle: TextStyle(
             color: Colors.white,
           ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(5),
-            ),
+          enabledBorder: _defaultBorderStyle,
+          focusedBorder: _defaultBorderStyle,
+          errorBorder: _defaultBorderStyle.copyWith(
             borderSide: BorderSide(
-              color: Colors.white,
+              color: Colors.red,
               width: 2,
             ),
           ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(5),
-            ),
+          focusedErrorBorder: _defaultBorderStyle.copyWith(
             borderSide: BorderSide(
-              color: Colors.white,
+              color: Colors.red,
               width: 2,
             ),
           ),
