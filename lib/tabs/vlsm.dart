@@ -6,21 +6,23 @@ import 'package:ip_calc/widgets/custom_text_field.dart';
 
 class VlsmResult
 {
-  String name;
-  int size;
-  int maxNumOfHosts;
-  SubnetMask subnetMask;
-  IpAddress networkAddress;
-  String assignableRange;
-  IpAddress broadcastAddress;
+  final String name;
+  final int size;
+  final int maxNumOfHosts;
+  final SubnetMask subnetMask;
+  final IpAddress firstUsableHostAddress;
+  final IpAddress lastUsableHostAddress;
+  final IpAddress networkAddress;
+  final IpAddress broadcastAddress;
 
   VlsmResult({
     @required this.name,
     @required this.size,
     @required this.maxNumOfHosts,
     @required this.subnetMask,
+    @required this.firstUsableHostAddress,
+    @required this.lastUsableHostAddress,
     @required this.networkAddress,
-    @required this.assignableRange,
     @required this.broadcastAddress,
   });
 }
@@ -41,6 +43,8 @@ class _VlsmState extends State<Vlsm> {
 
   List<TextEditingController> _subnetNameControllers = [];
   List<TextEditingController> _subnetSizeControllers = [];
+
+  List<VlsmResult> _result = [];
 
   @override
   Widget build(BuildContext context) {
@@ -173,7 +177,38 @@ class _VlsmState extends State<Vlsm> {
 
             setState(() {});
 
+            // TODO: Validate subnet name and size inputs
+
             if (_ipAddressError != null || _subnetMaskError != null || _numberOfSubnetsError != null) return;
+
+            IpAddress tempIpAddress = ipAddress;
+
+            for (int i = 0; i < numberOfSubnets; i++)
+            {
+              final int subnetSize = int.parse(_subnetSizeControllers[i].text);
+              final SubnetMask minimumSubnetMask = SubnetMask(SubnetMask.getMinimum(subnetSize).subnetMask);
+
+              tempIpAddress = IpAddress(
+                address: tempIpAddress.address,
+                subnetMask: minimumSubnetMask,
+              );
+
+              final int maxNumOfHosts = minimumSubnetMask.getMaxNumberOfHosts();
+              final IpAddress networkAddress = tempIpAddress.getNetworkAddress();
+
+              _result.add(VlsmResult(
+                name: _subnetNameControllers[i].text,
+                size: subnetSize,
+                maxNumOfHosts: maxNumOfHosts,
+                subnetMask: minimumSubnetMask,
+                firstUsableHostAddress: tempIpAddress.getFirstUsableHostAddress(),
+                lastUsableHostAddress: tempIpAddress.getLastUsableHostAddress(),
+                networkAddress: networkAddress,
+                broadcastAddress: tempIpAddress.getBroadcastAddress(),
+              ));
+            }
+
+            setState(() {});
           },
         ),
         CustomFlatButton(
