@@ -41,6 +41,7 @@ class _VlsmState extends State<Vlsm> {
         ),
         ListView.builder(
           shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
           itemCount: int.tryParse(_numberOfSubnetsController.text) ?? 0,
           itemBuilder: (context, index) {
             final TextEditingController subnetNameController = TextEditingController(text: "Subnet$index");
