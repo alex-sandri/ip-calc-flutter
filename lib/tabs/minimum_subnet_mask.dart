@@ -78,7 +78,13 @@ class _MinimumSubnetMaskState extends State<MinimumSubnetMask> {
           ),
           CustomFlatButton(
             text: "Reset",
-            onPressed: () => _numberOfHostsNeededController.text = "",
+            onPressed: () {
+              _numberOfHostsNeededController.text = "";
+
+              setState(() {
+                _numberOfHostsNeededError = null;
+              });
+            },
           ),
         ],
       ),
