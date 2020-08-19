@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ip_calc/custom_flat_button.dart';
 import 'package:ip_calc/custom_text_field.dart';
+import 'package:ip_calc/ip_address.dart';
+import 'package:ip_calc/subnet_mask.dart';
 
 class IpAddressInfo extends StatefulWidget {
   @override
@@ -10,6 +12,9 @@ class IpAddressInfo extends StatefulWidget {
 class _IpAddressInfoState extends State<IpAddressInfo> {
   String _ipAddressError;
   String _subnetMaskError;
+
+  final TextEditingController _ipAddressController = TextEditingController();
+  final TextEditingController _subnetMaskController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,16 +31,30 @@ class _IpAddressInfoState extends State<IpAddressInfo> {
             label: "IP Address",
             hint: "192.168.1.1",
             error: _ipAddressError,
+            controller: _ipAddressController,
           ),
           CustomTextField(
             label: "Subnet Mask",
             hint: "255.255.255.0 or /24",
             error: _subnetMaskError,
+            controller: _subnetMaskController,
           ),
           CustomFlatButton(
             text: "Calc",
             onPressed: () {
-              // TODO
+              final IpAddress ipAddress = IpAddress(
+                address: _ipAddressController.text,
+                subnetMask: SubnetMask(
+                  _subnetMaskController.text,
+                ),
+              );
+
+              print({
+                ipAddress.getNetworkAddress(),
+                ipAddress.getBroadcastAddress(),
+                ipAddress.subnetMask.getMaxNumberOfHosts(),
+                ipAddress.isPrivate(),
+              });
             },
           ),
           CustomFlatButton(
