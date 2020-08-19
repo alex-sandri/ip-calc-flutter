@@ -24,6 +24,12 @@ class SubnetMask
   SubnetMask convertTo(SubnetMaskNotation notation) {
     String subnetMask;
 
+    SubnetMaskNotation fromNotation = this.subnetMask.startsWith("/")
+      ? SubnetMaskNotation.SLASH
+      : SubnetMaskNotation.DOT_DECIMAL;
+
+    if (fromNotation == notation) return this;
+
     if (notation == SubnetMaskNotation.SLASH)
     {
       subnetMask = "/"
