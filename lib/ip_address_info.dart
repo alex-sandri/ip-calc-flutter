@@ -150,7 +150,13 @@ class _IpAddressInfoState extends State<IpAddressInfo> {
           ),
           CustomFlatButton(
             text: "Reset",
-            onPressed: () => _ipAddressController.text = _subnetMaskController.text = "",
+            onPressed: () {
+              _ipAddressController.text = _subnetMaskController.text = "";
+
+              setState(() {
+                _ipAddressError = _subnetMaskError = null;
+              });
+            },
           ),
         ],
       ),
