@@ -88,4 +88,31 @@ class IpAddress
       subnetMask: subnetMask,
     );
   }
+
+  IpAddress getNthAddress(int offset)
+  {
+    List<int> addressParts = this.address.split(".").map(int.parse);
+
+    int remainder = offset;
+
+    for (int i = 0; remainder > 0 && i < 4; i++)
+    {
+      addressParts[3 - i] += remainder;
+
+      if (addressParts[3 - i] > 255)
+      {
+        remainder = (addressParts[3 - i] / 255).truncate();
+
+        addressParts[3 - i] = addressParts[3 - i] % 255;
+      }
+      else remainder = 0;
+    }
+
+    String address = addressParts.join(".");
+
+    return IpAddress(
+      address: address,
+      subnetMask: subnetMask,
+    );
+  }
 }
