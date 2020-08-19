@@ -64,7 +64,7 @@ class IpAddress
     String firstUsableHostAddress = "";
 
     for (int i = 0; i < 4; i++)
-      firstUsableHostAddress += "${int.parse(addressInBits.substring(i * 8, 8), radix: 2)}.";
+      firstUsableHostAddress += "${int.parse(addressInBits.substring(i * 8, (i * 8) + 8), radix: 2)}.";
 
     return IpAddress(
       address: firstUsableHostAddress.substring(0, firstUsableHostAddress.length - 1),
@@ -81,7 +81,7 @@ class IpAddress
     String lastUsableHostAddress = "";
 
     for (int i = 0; i < 4; i++)
-      lastUsableHostAddress += "${int.parse(addressInBits.substring(i * 8, 8), radix: 2)}.";
+      lastUsableHostAddress += "${int.parse(addressInBits.substring(i * 8, (i * 8) + 8), radix: 2)}.";
 
     return IpAddress(
       address: lastUsableHostAddress.substring(0, lastUsableHostAddress.length - 1),
@@ -132,6 +132,6 @@ class IpAddress
 
     return (address.startsWith("10.") && slashSubnetMask.getBitCount() == 8)
       || isIncludedInSubnet(subnetMask, networkAddress: IpAddress(address: "172.16.0.0", subnetMask: SubnetMask("/12")))
-      || (address.startsWith("192.168.") && slashSubnetMask.getBitCount() == 16);
+      || isIncludedInSubnet(subnetMask, networkAddress: IpAddress(address: "192.168.0.0", subnetMask: SubnetMask("/16")));
   }
 }
