@@ -116,13 +116,22 @@ class IpAddress
     );
   }
 
-  bool isIncludedInSubnet(SubnetMask subnetMask)
+  bool isIncludedInSubnet(SubnetMask subnetMask, { IpAddress networkAddress })
   {
     String addressBits = getInBits();
-    String networkAddressBits = getNetworkAddress().getInBits();
+    String networkAddressBits = (networkAddress ?? getNetworkAddress()).getInBits();
         
     int subnetMaskBitCount = subnetMask.getBitCount();
 
     return addressBits.substring(0, subnetMaskBitCount) == networkAddressBits.substring(0, subnetMaskBitCount);
+  }
+
+  bool isPrivate()
+  {
+    SubnetMask slashSubnetMask = subnetMask.convertTo(SubnetMaskNotation.SLASH);
+
+    return (address.startsWith("10.") && slashSubnetMask.getBitCount() == 8)
+      || isIncludedInSubnet(subnetMask, networkAddress: IpAddress(address: "172.16.0.0", subnetMask: SubnetMask("/12")))
+      || (address.startsWith("192.168.") && slashSubnetMask.getBitCount() == 16);
   }
 }
