@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ip_calc/ip_address.dart';
+import 'package:ip_calc/subnet_mask.dart';
 import 'package:ip_calc/widgets/custom_flat_button.dart';
 import 'package:ip_calc/widgets/custom_text_field.dart';
 
@@ -90,15 +92,39 @@ class _VlsmState extends State<Vlsm> {
         CustomFlatButton(
           text: "Calc",
           onPressed: () {
-            print({
-              _ipAddressController.text,
-              _subnetMaskController.text,
-              for (int i = 0; i < _subnetNameControllers.length; i++)
-              {
-                _subnetNameControllers[i].text,
-                _subnetSizeControllers[i].text,
-              }
-            });
+            IpAddress ipAddress;
+            SubnetMask subnetMask;
+
+            try
+            {
+              subnetMask = SubnetMask(_subnetMaskController.text);
+
+              _subnetMaskError = null;
+            }
+            catch (e)
+            {
+              if (e is ArgumentError)
+                _subnetMaskError = e.message;
+            }
+
+            try
+            {
+              ipAddress = IpAddress(
+                address: _ipAddressController.text,
+                subnetMask: subnetMask,
+              );
+
+              _ipAddressError = null;
+            }
+            catch (e)
+            {
+              if (e is ArgumentError)
+                _ipAddressError = e.message;
+            }
+
+            setState(() {});
+
+            if (_ipAddressError != null || _subnetMaskError != null) return;
           },
         ),
         CustomFlatButton(
