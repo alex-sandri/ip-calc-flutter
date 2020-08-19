@@ -49,12 +49,76 @@ class _IpAddressInfoState extends State<IpAddressInfo> {
                 ),
               );
 
-              print({
-                ipAddress.getNetworkAddress().address,
-                ipAddress.getBroadcastAddress().address,
-                ipAddress.subnetMask.getMaxNumberOfHosts(),
-                ipAddress.isPrivate(),
-              });
+              showModalBottomSheet(
+                context: context,
+                builder: (context) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SelectableText(
+                          "Network address",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold
+                          ),
+                        ),
+                        SelectableText(
+                          ipAddress.getNetworkAddress().address,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w100
+                          ),
+                        ),
+                        SizedBox(
+                          height: 8,
+                        ),
+                        SelectableText(
+                          "Broadcast Address",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold
+                          ),
+                        ),
+                        SelectableText(
+                          ipAddress.getBroadcastAddress().address,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w100
+                          ),
+                        ),
+                        SizedBox(
+                          height: 8,
+                        ),
+                        SelectableText(
+                          "Maximum number of hosts",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold
+                          ),
+                        ),
+                        SelectableText(
+                          ipAddress.subnetMask.getMaxNumberOfHosts().toString(),
+                          style: TextStyle(
+                            fontWeight: FontWeight.w100
+                          ),
+                        ),
+                        SizedBox(
+                          height: 8,
+                        ),
+                        SelectableText(
+                          "Private",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold
+                          ),
+                        ),
+                        SelectableText(
+                          ipAddress.isPrivate().toString(),
+                          style: TextStyle(
+                            fontWeight: FontWeight.w100,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              );
             },
           ),
           CustomFlatButton(
