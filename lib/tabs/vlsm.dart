@@ -266,7 +266,18 @@ class _VlsmState extends State<Vlsm> {
                 ),
               ],
               rows: [
-
+                for (int i = 0; i < _result.length; i++)
+                  DataRow(
+                    cells: [
+                      DataCell(Text(_result[i].name)),
+                      DataCell(Text(_result[i].size.toString())),
+                      DataCell(Text(_result[i].maxNumOfHosts.toString())),
+                      DataCell(Text("")),
+                      DataCell(Text("")),
+                      DataCell(Text("")),
+                      DataCell(Text("")),
+                    ],
+                  ),
               ],
             ),
           ),
