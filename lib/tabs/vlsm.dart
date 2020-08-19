@@ -94,6 +94,7 @@ class _VlsmState extends State<Vlsm> {
           onPressed: () {
             IpAddress ipAddress;
             SubnetMask subnetMask;
+            int numberOfSubnets;
 
             try
             {
@@ -122,9 +123,21 @@ class _VlsmState extends State<Vlsm> {
                 _ipAddressError = e.message;
             }
 
+            try
+            {
+              if (int.tryParse(_numberOfSubnetsController.text) == null) throw ArgumentError("Invalid number of subnets");
+
+              _numberOfSubnetsError = null;
+            }
+            catch (e)
+            {
+              if (e is ArgumentError)
+                _numberOfSubnetsError = e.message;
+            }
+
             setState(() {});
 
-            if (_ipAddressError != null || _subnetMaskError != null) return;
+            if (_ipAddressError != null || _subnetMaskError != null || _numberOfSubnetsError != null) return;
           },
         ),
         CustomFlatButton(
