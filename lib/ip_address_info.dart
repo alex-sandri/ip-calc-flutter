@@ -13,8 +13,8 @@ class _IpAddressInfoState extends State<IpAddressInfo> {
   String _ipAddressError;
   String _subnetMaskError;
 
-  final TextEditingController _ipAddressController = TextEditingController(text: "192.168.1.1");
-  final TextEditingController _subnetMaskController = TextEditingController(text: "/24");
+  final TextEditingController _ipAddressController = TextEditingController();
+  final TextEditingController _subnetMaskController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
