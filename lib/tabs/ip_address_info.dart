@@ -47,7 +47,7 @@ class _IpAddressInfoState extends State<IpAddressInfo> {
 
                 _subnetMaskError = null;
               }
-              catch(e)
+              catch (e)
               {
                 if (e is ArgumentError)
                   _subnetMaskError = e.message;
@@ -62,7 +62,7 @@ class _IpAddressInfoState extends State<IpAddressInfo> {
 
                 _ipAddressError = null;
               }
-              catch(e)
+              catch (e)
               {
                 if (e is ArgumentError)
                   _ipAddressError = e.message;
