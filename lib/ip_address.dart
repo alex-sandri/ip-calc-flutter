@@ -115,4 +115,14 @@ class IpAddress
       subnetMask: subnetMask,
     );
   }
+
+  bool isIncludedInSubnet(SubnetMask subnetMask)
+  {
+    String addressBits = getInBits();
+    String networkAddressBits = getNetworkAddress().getInBits();
+        
+    int subnetMaskBitCount = subnetMask.getBitCount();
+
+    return addressBits.substring(0, subnetMaskBitCount) == networkAddressBits.substring(0, subnetMaskBitCount);
+  }
 }
