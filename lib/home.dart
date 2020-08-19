@@ -7,16 +7,27 @@ class Home extends StatelessWidget {
     return Material(
       child: GestureDetector(
         onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text(
-              "IP Calc",
+        child: DefaultTabController(
+          length: 1,
+          child: Scaffold(
+            appBar: AppBar(
+              title: Text(
+                "IP Calc",
+              ),
+              bottom: TabBar(
+                tabs: [
+                  Tab(
+                    icon: Icon(Icons.info_outline),
+                    text: "IP Address Info",
+                  ),
+                ],
+              ),
             ),
-          ),
-          body: ListView(
-            children: [
-              IpAddressInfo(),
-            ],
+            body: TabBarView(
+              children: [
+                IpAddressInfo(),
+              ],
+            ),
           ),
         ),
       ),

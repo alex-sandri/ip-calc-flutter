@@ -23,10 +23,6 @@ class _IpAddressInfoState extends State<IpAddressInfo> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "IP Address Info",
-            style: Theme.of(context).textTheme.headline5,
-          ),
           CustomTextField(
             label: "IP Address",
             hint: "192.168.1.1",
