@@ -51,10 +51,25 @@ class _VlsmState extends State<Vlsm> {
             _subnetNameControllers.clear();
             _subnetSizeControllers.clear();
 
-            for (int i = 0; i < (int.tryParse(_numberOfSubnetsController.text) ?? 0); i++)
+            try
             {
-              _subnetNameControllers.add(TextEditingController(text: "Subnet$i"));
-              _subnetSizeControllers.add(TextEditingController());
+              if (int.tryParse(_numberOfSubnetsController.text) == null) throw ArgumentError("Invalid number of subnets");
+
+              _numberOfSubnetsError = null;
+            }
+            catch (e)
+            {
+              if (e is ArgumentError)
+                _numberOfSubnetsError = e.message;
+            }
+
+            if (_numberOfSubnetsError == null)
+            {
+              for (int i = 0; i < (int.tryParse(_numberOfSubnetsController.text) ?? 0); i++)
+              {
+                _subnetNameControllers.add(TextEditingController(text: "Subnet$i"));
+                _subnetSizeControllers.add(TextEditingController());
+              }
             }
 
             setState(() {});
