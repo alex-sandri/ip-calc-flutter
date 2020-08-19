@@ -66,7 +66,7 @@ class SubnetMask
 
   int getMaxNumberOfHosts() => pow(2, 32 - this.getBitCount()) - 2;
 
-  SubnetMask getMinimum(int hosts) {
+  static SubnetMask getMinimum(int hosts) {
     hosts += 2; // Network and Broadcast addresses
 
     int power = 1;
