@@ -21,7 +21,6 @@ class IpAddress
     String networkAddress = "";
     String networkAddressBits
       = getInBits()
-          .replaceAll(".", "")
           .substring(0, subnetMask.getBitCount())
           .padRight(32, "0");
 
@@ -38,7 +37,6 @@ class IpAddress
     String broadcastAddress = "";
     String broadcastAddressBits
       = getInBits()
-          .replaceAll(".", "")
           .substring(0, subnetMask.getBitCount())
           .padRight(32, "1");
 
