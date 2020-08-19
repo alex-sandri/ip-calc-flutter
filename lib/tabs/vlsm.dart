@@ -4,6 +4,17 @@ import 'package:ip_calc/subnet_mask.dart';
 import 'package:ip_calc/widgets/custom_flat_button.dart';
 import 'package:ip_calc/widgets/custom_text_field.dart';
 
+class VlsmResult
+{
+  String name;
+  int size;
+  int maxNumOfHosts;
+  SubnetMask subnetMask;
+  IpAddress networkAddress;
+  String assignableRange;
+  IpAddress broadcastAddress;
+}
+
 class Vlsm extends StatefulWidget {
   @override
   _VlsmState createState() => _VlsmState();
