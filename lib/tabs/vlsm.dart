@@ -239,6 +239,11 @@ class _VlsmState extends State<Vlsm> {
                 networkAddress: networkAddress,
                 broadcastAddress: tempIpAddress.getBroadcastAddress(),
               ));
+
+              tempIpAddress = IpAddress(
+                address: networkAddress.getNthAddress(maxNumOfHosts + 2).address,
+                subnetMask: subnetMask,
+              );
             }
 
             setState(() {});

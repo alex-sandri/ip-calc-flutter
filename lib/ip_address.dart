@@ -94,7 +94,7 @@ class IpAddress
 
   IpAddress getNthAddress(int offset)
   {
-    List<int> addressParts = this.address.split(".").map(int.parse);
+    List<int> addressParts = this.address.split(".").map(int.parse).toList();
 
     int remainder = offset;
 
