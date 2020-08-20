@@ -15,6 +15,17 @@ class SubnetTextControllers
   });
 }
 
+class Subnet
+{
+  final String name;
+  final int size;
+
+  Subnet({
+    @required this.name,
+    @required this.size,
+  });
+}
+
 class VlsmResult
 {
   final String name;
@@ -192,11 +203,22 @@ class _VlsmState extends State<Vlsm> {
 
             if (_ipAddressError != null || _subnetMaskError != null || _numberOfSubnetsError != null) return;
 
+            List<Subnet> subnets = [];
+
+            _subnetTextControllers.forEach((subnet) {
+              subnets.add(Subnet(
+                name: subnet.name.text,
+                size: int.parse(subnet.size.text),
+              ));
+            });
+
+            subnets.sort((a, b) => b.size - a.size);
+
             IpAddress tempIpAddress = ipAddress;
 
             for (int i = 0; i < numberOfSubnets; i++)
             {
-              final int subnetSize = int.parse(_subnetTextControllers[i].size.text);
+              final int subnetSize = subnets[i].size;
               final SubnetMask minimumSubnetMask = SubnetMask(SubnetMask.getMinimum(subnetSize).subnetMask);
 
               tempIpAddress = IpAddress(
@@ -208,7 +230,7 @@ class _VlsmState extends State<Vlsm> {
               final IpAddress networkAddress = tempIpAddress.getNetworkAddress();
 
               _result.add(VlsmResult(
-                name: _subnetTextControllers[i].name.text,
+                name: subnets[i].name,
                 size: subnetSize,
                 maxNumOfHosts: maxNumOfHosts,
                 subnetMask: minimumSubnetMask,
