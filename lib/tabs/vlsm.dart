@@ -113,7 +113,7 @@ class _VlsmState extends State<Vlsm> {
               for (int i = 0; i < int.parse(_numberOfSubnetsController.text); i++)
               {
                 _subnetTextControllers.add(SubnetTextControllers(
-                  name: TextEditingController(text: "Subnet$i"),
+                  name: TextEditingController(text: "Subnet${i + 1}"),
                   size: TextEditingController()
                 ));
               }
@@ -132,7 +132,7 @@ class _VlsmState extends State<Vlsm> {
                 Expanded(
                   child: CustomTextField(
                     label: "Subnet name",
-                    hint: "Subnet$index",
+                    hint: "Subnet${index + 1}",
                     controller: _subnetTextControllers[index].name,
                   ),
                 ),
