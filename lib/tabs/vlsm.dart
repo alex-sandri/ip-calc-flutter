@@ -272,10 +272,17 @@ class _VlsmState extends State<Vlsm> {
                       DataCell(Text(_result[i].name)),
                       DataCell(Text(_result[i].size.toString())),
                       DataCell(Text(_result[i].maxNumOfHosts.toString())),
-                      DataCell(Text("")),
-                      DataCell(Text("")),
-                      DataCell(Text("")),
-                      DataCell(Text("")),
+                      DataCell(Text(
+                        _result[i].subnetMask.convertTo(SubnetMaskNotation.DOT_DECIMAL).subnetMask
+                        + " (${_result[i].subnetMask.convertTo(SubnetMaskNotation.SLASH).subnetMask})"
+                      )),
+                      DataCell(Text(_result[i].networkAddress.address)),
+                      DataCell(Text(
+                        _result[i].firstUsableHostAddress.address
+                        + " - "
+                        + _result[i].lastUsableHostAddress.address
+                      )),
+                      DataCell(Text(_result[i].broadcastAddress.address)),
                     ],
                   ),
               ],
