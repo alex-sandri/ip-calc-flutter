@@ -4,6 +4,17 @@ import 'package:ip_calc/subnet_mask.dart';
 import 'package:ip_calc/widgets/custom_flat_button.dart';
 import 'package:ip_calc/widgets/custom_text_field.dart';
 
+class SubnetTextControllers
+{
+  final TextEditingController name;
+  final TextEditingController size;
+
+  SubnetTextControllers({
+    @required this.name,
+    @required this.size,
+  });
+}
+
 class VlsmResult
 {
   final String name;
@@ -41,8 +52,7 @@ class _VlsmState extends State<Vlsm> {
   String _subnetMaskError;
   String _numberOfSubnetsError;
 
-  List<TextEditingController> _subnetNameControllers = [];
-  List<TextEditingController> _subnetSizeControllers = [];
+  List<SubnetTextControllers> _subnetTextControllers = [];
 
   List<VlsmResult> _result = [];
 
@@ -73,8 +83,7 @@ class _VlsmState extends State<Vlsm> {
         CustomFlatButton(
           text: "Create subnets",
           onPressed: () {
-            _subnetNameControllers.clear();
-            _subnetSizeControllers.clear();
+            _subnetTextControllers.clear();
 
             try
             {
@@ -92,8 +101,10 @@ class _VlsmState extends State<Vlsm> {
             {
               for (int i = 0; i < int.parse(_numberOfSubnetsController.text); i++)
               {
-                _subnetNameControllers.add(TextEditingController(text: "Subnet$i"));
-                _subnetSizeControllers.add(TextEditingController());
+                _subnetTextControllers.add(SubnetTextControllers(
+                  name: TextEditingController(text: "Subnet$i"),
+                  size: TextEditingController()
+                ));
               }
             }
 
@@ -111,7 +122,7 @@ class _VlsmState extends State<Vlsm> {
                   child: CustomTextField(
                     label: "Subnet name",
                     hint: "Subnet$index",
-                    controller: _subnetNameControllers[index],
+                    controller: _subnetTextControllers[index].name,
                   ),
                 ),
                 SizedBox(
@@ -121,7 +132,7 @@ class _VlsmState extends State<Vlsm> {
                   child: CustomTextField(
                     label: "Subnet size",
                     hint: "10",
-                    controller: _subnetSizeControllers[index],
+                    controller: _subnetTextControllers[index].size,
                     keyboardType: TextInputType.number,
                   ),
                 ),
@@ -185,7 +196,7 @@ class _VlsmState extends State<Vlsm> {
 
             for (int i = 0; i < numberOfSubnets; i++)
             {
-              final int subnetSize = int.parse(_subnetSizeControllers[i].text);
+              final int subnetSize = int.parse(_subnetTextControllers[i].size.text);
               final SubnetMask minimumSubnetMask = SubnetMask(SubnetMask.getMinimum(subnetSize).subnetMask);
 
               tempIpAddress = IpAddress(
@@ -197,7 +208,7 @@ class _VlsmState extends State<Vlsm> {
               final IpAddress networkAddress = tempIpAddress.getNetworkAddress();
 
               _result.add(VlsmResult(
-                name: _subnetNameControllers[i].text,
+                name: _subnetTextControllers[i].name.text,
                 size: subnetSize,
                 maxNumOfHosts: maxNumOfHosts,
                 subnetMask: minimumSubnetMask,
