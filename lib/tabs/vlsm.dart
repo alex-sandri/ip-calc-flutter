@@ -154,6 +154,8 @@ class _VlsmState extends State<Vlsm> {
         CustomFlatButton(
           text: "Calc",
           onPressed: () {
+            _result.clear();
+
             IpAddress ipAddress;
             SubnetMask subnetMask;
             int numberOfSubnets;
