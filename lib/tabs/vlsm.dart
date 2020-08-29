@@ -211,6 +211,14 @@ class _VlsmState extends State<Vlsm> {
             List<Subnet> subnets = [];
 
             _subnetTextControllers.forEach((subnet) {
+              if (subnet.name.text.isEmpty) subnet.nameError = "Invalid subnet name";
+
+              if (int.tryParse(subnet.size.text) == null) subnet.sizeError = "Invalid subnet size";
+
+              setState(() {});
+
+              if (subnet.nameError != null || subnet.sizeError != null) return;
+
               subnets.add(Subnet(
                 name: subnet.name.text,
                 size: int.parse(subnet.size.text),
