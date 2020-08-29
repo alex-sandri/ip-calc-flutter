@@ -7,16 +7,14 @@ import 'package:ip_calc/widgets/custom_text_field.dart';
 class SubnetTextControllers
 {
   final TextEditingController name;
-  final String nameError;
+  String nameError;
 
   final TextEditingController size;
-  final String sizeError;
+  String sizeError;
 
   SubnetTextControllers({
     @required this.name,
-    @required this.nameError,
     @required this.size,
-    @required this.sizeError,
   });
 }
 
