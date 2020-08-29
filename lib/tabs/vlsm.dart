@@ -206,8 +206,6 @@ class _VlsmState extends State<Vlsm> {
 
             setState(() {});
 
-            // TODO: Validate subnet name and size inputs
-
             if (_ipAddressError != null || _subnetMaskError != null || _numberOfSubnetsError != null) return;
 
             List<Subnet> subnets = [];
