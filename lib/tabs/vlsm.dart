@@ -209,9 +209,9 @@ class _VlsmState extends State<Vlsm> {
             List<Subnet> subnets = [];
 
             _subnetTextControllers.forEach((subnet) {
-              if (subnet.name.text.isEmpty) subnet.nameError = "Invalid subnet name";
+              subnet.nameError = subnet.name.text.isEmpty ? "Invalid subnet name" : null;
 
-              if (int.tryParse(subnet.size.text) == null) subnet.sizeError = "Invalid subnet size";
+              subnet.sizeError = int.tryParse(subnet.size.text) == null ? "Invalid subnet size" : null;
 
               setState(() {});
 
