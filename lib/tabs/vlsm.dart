@@ -206,8 +206,6 @@ class _VlsmState extends State<Vlsm> {
 
             setState(() {});
 
-            if (_ipAddressError != null || _subnetMaskError != null || _numberOfSubnetsError != null) return;
-
             List<Subnet> subnets = [];
 
             _subnetTextControllers.forEach((subnet) {
@@ -224,6 +222,13 @@ class _VlsmState extends State<Vlsm> {
                 size: int.parse(subnet.size.text),
               ));
             });
+
+            if (
+              _ipAddressError != null
+              || _subnetMaskError != null
+              || _numberOfSubnetsError != null
+              || _subnetTextControllers.where((subnet) => subnet.nameError != null || subnet.sizeError != null).isNotEmpty
+            ) return;
 
             subnets.sort((a, b) => b.size - a.size);
 
