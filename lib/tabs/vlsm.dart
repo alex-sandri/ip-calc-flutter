@@ -137,6 +137,7 @@ class _VlsmState extends State<Vlsm> {
                     label: "Subnet name",
                     hint: "Subnet${index + 1}",
                     controller: _subnetTextControllers[index].name,
+                    error: _subnetTextControllers[index].nameError,
                   ),
                 ),
                 SizedBox(
@@ -147,6 +148,7 @@ class _VlsmState extends State<Vlsm> {
                     label: "Subnet size",
                     hint: "10",
                     controller: _subnetTextControllers[index].size,
+                    error: _subnetTextControllers[index].sizeError,
                     keyboardType: TextInputType.number,
                   ),
                 ),
