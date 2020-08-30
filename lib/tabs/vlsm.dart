@@ -139,6 +139,12 @@ class _VlsmState extends State<Vlsm> {
                   _subnetTextControllers.removeAt(index);
                 });
               },
+              background: Container(
+                color: Colors.red,
+                child: Icon(
+                  Icons.delete,
+                ),
+              ),
               child: Row(
                 children: [
                   Expanded(
