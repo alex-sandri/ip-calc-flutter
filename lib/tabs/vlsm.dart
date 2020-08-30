@@ -130,29 +130,39 @@ class _VlsmState extends State<Vlsm> {
           physics: NeverScrollableScrollPhysics(),
           itemCount: int.tryParse(_numberOfSubnetsController.text) ?? 0,
           itemBuilder: (context, index) {
-            return Row(
-              children: [
-                Expanded(
-                  child: CustomTextField(
-                    label: "Subnet name",
-                    hint: "Subnet${index + 1}",
-                    controller: _subnetTextControllers[index].name,
-                    error: _subnetTextControllers[index].nameError,
+            return Dismissible(
+              key: ValueKey(_subnetTextControllers[index]),
+              onDismissed: (direction) {
+                setState(() {
+                  _numberOfSubnetsController.text = (int.parse(_numberOfSubnetsController.text) - 1).toString();
+
+                  _subnetTextControllers.removeAt(index);
+                });
+              },
+              child: Row(
+                children: [
+                  Expanded(
+                    child: CustomTextField(
+                      label: "Subnet name",
+                      hint: "Subnet${index + 1}",
+                      controller: _subnetTextControllers[index].name,
+                      error: _subnetTextControllers[index].nameError,
+                    ),
                   ),
-                ),
-                SizedBox(
-                  width: 8,
-                ),
-                Expanded(
-                  child: CustomTextField(
-                    label: "Subnet size",
-                    hint: "10",
-                    controller: _subnetTextControllers[index].size,
-                    error: _subnetTextControllers[index].sizeError,
-                    keyboardType: TextInputType.number,
+                  SizedBox(
+                    width: 8,
                   ),
-                ),
-              ],
+                  Expanded(
+                    child: CustomTextField(
+                      label: "Subnet size",
+                      hint: "10",
+                      controller: _subnetTextControllers[index].size,
+                      error: _subnetTextControllers[index].sizeError,
+                      keyboardType: TextInputType.number,
+                    ),
+                  ),
+                ],
+              ),
             );
           },
         ),
