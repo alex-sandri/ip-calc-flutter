@@ -135,7 +135,7 @@ class _VlsmState extends State<Vlsm> {
               onDismissed: (direction) {
                 Scaffold
                   .of(context)
-                  .showSnackBar(SnackBar(content: Text("${_subnetTextControllers[index].name.text} removed")));
+                  .showSnackBar(SnackBar(content: Text("Subnet '${_subnetTextControllers[index].name.text}' removed")));
 
                 setState(() {
                   _numberOfSubnetsController.text = (int.parse(_numberOfSubnetsController.text) - 1).toString();
