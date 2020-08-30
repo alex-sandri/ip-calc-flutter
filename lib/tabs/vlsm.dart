@@ -133,6 +133,10 @@ class _VlsmState extends State<Vlsm> {
             return Dismissible(
               key: ValueKey(_subnetTextControllers[index]),
               onDismissed: (direction) {
+                Scaffold
+                  .of(context)
+                  .showSnackBar(SnackBar(content: Text("${_subnetTextControllers[index].name.text} removed")));
+
                 setState(() {
                   _numberOfSubnetsController.text = (int.parse(_numberOfSubnetsController.text) - 1).toString();
 
