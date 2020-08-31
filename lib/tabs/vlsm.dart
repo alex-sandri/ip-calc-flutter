@@ -296,6 +296,7 @@ class _VlsmState extends State<Vlsm> {
           onPressed: () {
             _ipAddressController.text = _subnetMaskController.text = _numberOfSubnetsController.text = "";
 
+            _subnetTextControllers.clear();
             _result.clear();
 
             setState(() {
