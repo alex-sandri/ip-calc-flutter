@@ -128,7 +128,7 @@ class _VlsmState extends State<Vlsm> {
         ListView.builder(
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
-          itemCount: int.tryParse(_numberOfSubnetsController.text) ?? 0,
+          itemCount: _subnetTextControllers.length,
           itemBuilder: (context, index) {
             return Dismissible(
               key: ValueKey(_subnetTextControllers[index]),
