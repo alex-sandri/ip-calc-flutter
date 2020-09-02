@@ -322,20 +322,20 @@ class _VlsmState extends State<Vlsm> {
                 for (int i = 0; i < _result.length; i++)
                   DataRow(
                     cells: [
-                      DataCell(Text(_result[i].name)),
-                      DataCell(Text(_result[i].size.toString())),
-                      DataCell(Text(_result[i].maxNumOfHosts.toString())),
-                      DataCell(Text(
+                      DataCell(SelectableText(_result[i].name)),
+                      DataCell(SelectableText(_result[i].size.toString())),
+                      DataCell(SelectableText(_result[i].maxNumOfHosts.toString())),
+                      DataCell(SelectableText(
                         _result[i].subnetMask.convertTo(SubnetMaskNotation.DOT_DECIMAL).subnetMask
                         + " (${_result[i].subnetMask.convertTo(SubnetMaskNotation.SLASH).subnetMask})"
                       )),
-                      DataCell(Text(_result[i].networkAddress.address)),
-                      DataCell(Text(
+                      DataCell(SelectableText(_result[i].networkAddress.address)),
+                      DataCell(SelectableText(
                         _result[i].firstUsableHostAddress.address
                         + " - "
                         + _result[i].lastUsableHostAddress.address
                       )),
-                      DataCell(Text(_result[i].broadcastAddress.address)),
+                      DataCell(SelectableText(_result[i].broadcastAddress.address)),
                     ],
                   ),
               ],
