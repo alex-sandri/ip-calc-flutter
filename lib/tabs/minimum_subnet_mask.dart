@@ -13,6 +13,8 @@ class _MinimumSubnetMaskState extends State<MinimumSubnetMask> {
 
   String _numberOfHostsNeededError;
 
+  final List<ListTile> _result = [];
+
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -48,31 +50,12 @@ class _MinimumSubnetMaskState extends State<MinimumSubnetMask> {
 
             if (_numberOfHostsNeededError != null) return;
 
-            showModalBottomSheet(
-              context: context,
-              builder: (context) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SelectableText(
-                        "Subnet mask",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold
-                        ),
-                      ),
-                      SelectableText(
-                        "${subnetMask.convertTo(SubnetMaskNotation.DOT_DECIMAL).subnetMask} (${subnetMask.convertTo(SubnetMaskNotation.SLASH).subnetMask})",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w100
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              },
-            );
+            _result.add(ListTile(
+              title: SelectableText("Subnet mask"),
+              subtitle: SelectableText(
+                "${subnetMask.convertTo(SubnetMaskNotation.DOT_DECIMAL).subnetMask} (${subnetMask.convertTo(SubnetMaskNotation.SLASH).subnetMask})"
+              ),
+            ));
           },
         ),
         CustomFlatButton(
@@ -84,6 +67,12 @@ class _MinimumSubnetMaskState extends State<MinimumSubnetMask> {
               _numberOfHostsNeededError = null;
             });
           },
+        ),
+        ListView.builder(
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          itemCount: _result.length,
+          itemBuilder: (context, index) => _result[index],
         ),
       ],
     );
