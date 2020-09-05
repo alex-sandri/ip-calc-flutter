@@ -32,6 +32,8 @@ class _MinimumSubnetMaskState extends State<MinimumSubnetMask> {
           onPressed: () {
             SubnetMask subnetMask;
 
+            _result.clear();
+
             try
             {
               if (int.tryParse(_numberOfHostsNeededController.text) == null) throw ArgumentError("Invalid number of hosts");
@@ -62,6 +64,8 @@ class _MinimumSubnetMaskState extends State<MinimumSubnetMask> {
           text: "Reset",
           onPressed: () {
             _numberOfHostsNeededController.text = "";
+
+            _result.clear();
 
             setState(() {
               _numberOfHostsNeededError = null;

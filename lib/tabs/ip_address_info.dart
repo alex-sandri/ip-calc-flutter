@@ -41,6 +41,8 @@ class _IpAddressInfoState extends State<IpAddressInfo> {
             IpAddress ipAddress;
             SubnetMask subnetMask;
 
+            _result.clear();
+
             try
             {
               subnetMask = SubnetMask(_subnetMaskController.text);
@@ -97,6 +99,8 @@ class _IpAddressInfoState extends State<IpAddressInfo> {
           text: "Reset",
           onPressed: () {
             _ipAddressController.text = _subnetMaskController.text = "";
+
+            _result.clear();
 
             setState(() {
               _ipAddressError = _subnetMaskError = null;
