@@ -16,6 +16,8 @@ class _IpAddressInfoState extends State<IpAddressInfo> {
   final TextEditingController _ipAddressController = TextEditingController();
   final TextEditingController _subnetMaskController = TextEditingController();
 
+  final List<ListTile> _result = [];
+
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -70,76 +72,25 @@ class _IpAddressInfoState extends State<IpAddressInfo> {
 
             if (_ipAddressError != null || _subnetMaskError != null) return;
 
-            showModalBottomSheet(
-              context: context,
-              builder: (context) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SelectableText(
-                        "Network address",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold
-                        ),
-                      ),
-                      SelectableText(
-                        ipAddress.getNetworkAddress().address,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w100
-                        ),
-                      ),
-                      SizedBox(
-                        height: 8,
-                      ),
-                      SelectableText(
-                        "Broadcast address",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold
-                        ),
-                      ),
-                      SelectableText(
-                        ipAddress.getBroadcastAddress().address,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w100
-                        ),
-                      ),
-                      SizedBox(
-                        height: 8,
-                      ),
-                      SelectableText(
-                        "Maximum number of hosts",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold
-                        ),
-                      ),
-                      SelectableText(
-                        ipAddress.subnetMask.getMaxNumberOfHosts().toString(),
-                        style: TextStyle(
-                          fontWeight: FontWeight.w100
-                        ),
-                      ),
-                      SizedBox(
-                        height: 8,
-                      ),
-                      SelectableText(
-                        "Private",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold
-                        ),
-                      ),
-                      SelectableText(
-                        ipAddress.isPrivate().toString(),
-                        style: TextStyle(
-                          fontWeight: FontWeight.w100,
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              },
-            );
+            _result.add(ListTile(
+              title: SelectableText("Network address"),
+              subtitle: SelectableText(ipAddress.getNetworkAddress().address),
+            ));
+            
+            _result.add(ListTile(
+              title: SelectableText("Broadcast address"),
+              subtitle: SelectableText(ipAddress.getBroadcastAddress().address),
+            ));
+
+            _result.add(ListTile(
+              title: SelectableText("Maximum number of hosts"),
+              subtitle: SelectableText(ipAddress.subnetMask.getMaxNumberOfHosts().toString()),
+            ));
+
+            _result.add(ListTile(
+              title: SelectableText("Private"),
+              subtitle: SelectableText(ipAddress.isPrivate().toString()),
+            ));
           },
         ),
         CustomFlatButton(
@@ -151,6 +102,12 @@ class _IpAddressInfoState extends State<IpAddressInfo> {
               _ipAddressError = _subnetMaskError = null;
             });
           },
+        ),
+        ListView.builder(
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          itemCount: _result.length,
+          itemBuilder: (context, index) => _result[index],
         ),
       ],
     );
