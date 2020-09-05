@@ -23,6 +23,7 @@ class _MinimumSubnetMaskState extends State<MinimumSubnetMask> {
           hint: "254",
           error: _numberOfHostsNeededError,
           controller: _numberOfHostsNeededController,
+          keyboardType: TextInputType.number,
         ),
         CustomFlatButton(
           text: "Calc",
