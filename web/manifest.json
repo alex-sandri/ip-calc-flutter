@@ -1,11 +1,11 @@
 {
-    "name": "ip_calc",
-    "short_name": "ip_calc",
+    "name": "IP Calc",
+    "short_name": "IP Calc",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#000000",
+    "theme_color": "#000000",
+    "description": "IP address info, Minimum subnet mask and Variable Length Subnet Mask (VLSM) calculator",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
