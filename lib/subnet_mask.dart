@@ -80,6 +80,9 @@ class SubnetMask
 
     while (pow(2, bitsNeeded) < hosts) bitsNeeded++;
 
+    if (32 - bitsNeeded <= 0)
+      throw ArgumentError("Too many hosts");
+
     return SubnetMask("/${32 - bitsNeeded}");
   }
 }
