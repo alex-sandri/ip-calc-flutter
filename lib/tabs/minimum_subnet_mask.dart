@@ -36,7 +36,8 @@ class _MinimumSubnetMaskState extends State<MinimumSubnetMask> {
 
             try
             {
-              if (int.tryParse(_numberOfHostsNeededController.text) == null) throw ArgumentError("Invalid number of hosts");
+              if (int.tryParse(_numberOfHostsNeededController.text) == null || int.parse(_numberOfHostsNeededController.text) < 0)
+                throw ArgumentError("Invalid number of hosts");
 
               subnetMask = SubnetMask.getMinimum(int.parse(_numberOfHostsNeededController.text));
 
