@@ -101,7 +101,8 @@ class _VlsmState extends State<Vlsm> {
 
             try
             {
-              if (int.tryParse(_numberOfSubnetsController.text) == null) throw ArgumentError("Invalid number of subnets");
+              if (int.tryParse(_numberOfSubnetsController.text) == null || int.parse(_numberOfSubnetsController.text) < 0)
+                throw ArgumentError("Invalid number of subnets");
 
               _numberOfSubnetsError = null;
             }
@@ -214,7 +215,8 @@ class _VlsmState extends State<Vlsm> {
 
             try
             {
-              if ((numberOfSubnets = int.tryParse(_numberOfSubnetsController.text)) == null) throw ArgumentError("Invalid number of subnets");
+              if ((numberOfSubnets = int.tryParse(_numberOfSubnetsController.text)) == null || numberOfSubnets < 0)
+                throw ArgumentError("Invalid number of subnets");
 
               _numberOfSubnetsError = null;
             }
