@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ip_calc/tabs/ip_address_info.dart';
 import 'package:ip_calc/tabs/minimum_subnet_mask.dart';
@@ -18,7 +19,7 @@ class Home extends StatelessWidget {
             builder: (context) {
               final TabController tabController = DefaultTabController.of(context);
 
-              if (Platform.isAndroid || Platform.isIOS)
+              if (!kIsWeb && (Platform.isAndroid || Platform.isIOS))
               {
                 final QuickActions quickActions = QuickActions();
 
