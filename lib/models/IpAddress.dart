@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ip_calc/subnet_mask.dart';
+import 'package:ip_calc/models/SubnetMask.dart';
 
 class IpAddress
 {

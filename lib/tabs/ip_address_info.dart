@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ip_calc/widgets/custom_flat_button.dart';
 import 'package:ip_calc/widgets/custom_text_field.dart';
-import 'package:ip_calc/ip_address.dart';
-import 'package:ip_calc/subnet_mask.dart';
+import 'package:ip_calc/models/IpAddress.dart';
+import 'package:ip_calc/models/SubnetMask.dart';
 
 class IpAddressInfo extends StatefulWidget {
   @override
