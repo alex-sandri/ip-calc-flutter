@@ -106,10 +106,9 @@ class _VlsmState extends State<Vlsm> {
 
               _numberOfSubnetsError = null;
             }
-            catch (e)
+            on ArgumentError catch (e)
             {
-              if (e is ArgumentError)
-                _numberOfSubnetsError = e.message;
+              _numberOfSubnetsError = e.message;
             }
 
             if (_numberOfSubnetsError == null)
@@ -192,10 +191,9 @@ class _VlsmState extends State<Vlsm> {
 
               _subnetMaskError = null;
             }
-            catch (e)
+            on ArgumentError catch (e)
             {
-              if (e is ArgumentError)
-                _subnetMaskError = e.message;
+              _subnetMaskError = e.message;
             }
 
             try
@@ -207,10 +205,9 @@ class _VlsmState extends State<Vlsm> {
 
               _ipAddressError = null;
             }
-            catch (e)
+            on ArgumentError catch (e)
             {
-              if (e is ArgumentError)
-                _ipAddressError = e.message;
+              _ipAddressError = e.message;
             }
 
             try
@@ -220,10 +217,9 @@ class _VlsmState extends State<Vlsm> {
 
               _numberOfSubnetsError = null;
             }
-            catch (e)
+            on ArgumentError catch (e)
             {
-              if (e is ArgumentError)
-                _numberOfSubnetsError = e.message;
+              _numberOfSubnetsError = e.message;
             }
 
             setState(() {});

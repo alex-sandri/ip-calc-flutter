@@ -43,10 +43,9 @@ class _MinimumSubnetMaskState extends State<MinimumSubnetMask> {
 
               _numberOfHostsNeededError = null;
             }
-            catch (e)
+            on ArgumentError catch (e)
             {
-              if (e is ArgumentError)
-                _numberOfHostsNeededError = e.message;
+              _numberOfHostsNeededError = e.message;
             }
 
             setState(() {});
