@@ -48,7 +48,10 @@ class SubnetMask
             .subnetMask
             .split(".")
             .map(int.parse)
-            .reduce((value, element) => value + element.toRadixString(2).replaceAll("0", "").length)
+            .map((element) => element.toRadixString(2))
+            .join("")
+            .replaceAll("0", "")
+            .length
             .toString();
     }
     else
