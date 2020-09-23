@@ -322,7 +322,9 @@ class _VlsmState extends State<Vlsm> {
                     cells: [
                       DataCell(SelectableText(_result[i].name)),
                       DataCell(SelectableText(_result[i].size.toString())),
-                      DataCell(SelectableText(_result[i].maxNumOfHosts.toString())),
+                      DataCell(SelectableText(
+                        "${_result[i].maxNumOfHosts} (${(_result[i].size / _result[i].maxNumOfHosts * 100).round()}% used)",
+                      )),
                       DataCell(SelectableText(
                         _result[i].subnetMask.convertTo(SubnetMaskNotation.DOT_DECIMAL).subnetMask
                         + " (${_result[i].subnetMask.convertTo(SubnetMaskNotation.SLASH).subnetMask})"
