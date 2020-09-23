@@ -304,6 +304,9 @@ class _VlsmState extends State<Vlsm> {
         ),
 
         if (_result.length > 0)
+          SelectableText("Used range addresses: ${(_result.map((element) => element.size).reduce((value, element) => value + element) / SubnetMask(_subnetMaskController.text).getMaxNumberOfHosts() * 100).round()}%"),
+
+        if (_result.length > 0)
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: DataTable(
