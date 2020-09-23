@@ -308,13 +308,13 @@ class _VlsmState extends State<Vlsm> {
             scrollDirection: Axis.horizontal,
             child: DataTable(
               columns: const [
-                DataColumn(label: SelectableText("Subnet name")),
-                DataColumn(label: SelectableText("Needed size")),
-                DataColumn(label: SelectableText("Allocated size")),
-                DataColumn(label: SelectableText("Subnet mask")),
-                DataColumn(label: SelectableText("Network address")),
-                DataColumn(label: SelectableText("Assignable range")),
-                DataColumn(label: SelectableText("Broadcast address")),
+                DataColumn(label: Expanded(child: SelectableText("Subnet name"))),
+                DataColumn(label: Expanded(child: SelectableText("Needed size"))),
+                DataColumn(label: Expanded(child: SelectableText("Allocated size"))),
+                DataColumn(label: Expanded(child: SelectableText("Subnet mask"))),
+                DataColumn(label: Expanded(child: SelectableText("Network address"))),
+                DataColumn(label: Expanded(child: SelectableText("Assignable range"))),
+                DataColumn(label: Expanded(child: SelectableText("Broadcast address"))),
               ],
               rows: [
                 for (int i = 0; i < _result.length; i++)
