@@ -304,7 +304,26 @@ class _VlsmState extends State<Vlsm> {
         ),
 
         if (_result.length > 0)
-          SelectableText("Used range addresses: ${(_result.map((element) => element.size).reduce((value, element) => value + element) / SubnetMask(_subnetMaskController.text).getMaxNumberOfHosts() * 100).round()}%"),
+          SelectableText.rich(
+            TextSpan(
+              children: [
+                TextSpan(text: "Used addresses for the "),
+                TextSpan(
+                  text: "${_ipAddressController.text + SubnetMask(_subnetMaskController.text).convertTo(SubnetMaskNotation.SLASH).subnetMask} ",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                TextSpan(text: "range:\n"),
+                TextSpan(
+                  text: "${(_result.map((element) => element.size).reduce((value, element) => value + element) / SubnetMask(_subnetMaskController.text).getMaxNumberOfHosts() * 100).round()}%",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
 
         if (_result.length > 0)
           SingleChildScrollView(
